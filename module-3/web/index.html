@@ -47,7 +47,7 @@
               <p align="center">
                 <strong> {{mysfit.name}}</strong>
                 <br>
-                <img src="{{mysfit.thumbImageUri}}" alt="{{mysfit.Name}}">
+                <img src="{{mysfit.thumbImageUri}}" alt="{{mysfit.Name}}" width="250px" height="250px">
               </p>
               <p>
                 <br>
@@ -70,7 +70,7 @@
   </body>
   <script>
 
-    var mysfitsApiEndpoint = 'REPLACE_ME';
+    var mysfitsApiEndpoint = 'http://mysfits-nlb-c6d9e274619677d9.elb.us-east-1.amazonaws.com';
 
     var app = angular.module('mysfitsApp', []);
 

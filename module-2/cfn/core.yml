@@ -118,56 +118,56 @@ Resources:
   # in these subnets have only private IP addresses, and must use a NAT
   # gateway to talk to the internet. We launch two NAT gateways, one for
   # each private subnet.
-  NatGatewayOneAttachment:
-    Type: AWS::EC2::EIP
-    DependsOn: GatewayAttachement
-    Properties:
-        Domain: vpc
-  NatGatewayTwoAttachment:
-    Type: AWS::EC2::EIP
-    DependsOn: GatewayAttachement
-    Properties:
-        Domain: vpc
-  NatGatewayOne:
-    Type: AWS::EC2::NatGateway
-    Properties:
-      AllocationId: !GetAtt NatGatewayOneAttachment.AllocationId
-      SubnetId: !Ref PublicSubnetOne
-  NatGatewayTwo:
-    Type: AWS::EC2::NatGateway
-    Properties:
-      AllocationId: !GetAtt NatGatewayTwoAttachment.AllocationId
-      SubnetId: !Ref PublicSubnetTwo
-  PrivateRouteTableOne:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId: !Ref 'VPC'
-  PrivateRouteOne:
-    Type: AWS::EC2::Route
-    Properties:
-      RouteTableId: !Ref PrivateRouteTableOne
-      DestinationCidrBlock: 0.0.0.0/0
-      NatGatewayId: !Ref NatGatewayOne
-  PrivateRouteTableOneAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      RouteTableId: !Ref PrivateRouteTableOne
-      SubnetId: !Ref PrivateSubnetOne
-  PrivateRouteTableTwo:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId: !Ref 'VPC'
-  PrivateRouteTwo:
-    Type: AWS::EC2::Route
-    Properties:
-      RouteTableId: !Ref PrivateRouteTableTwo
-      DestinationCidrBlock: 0.0.0.0/0
-      NatGatewayId: !Ref NatGatewayTwo
-  PrivateRouteTableTwoAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      RouteTableId: !Ref PrivateRouteTableTwo
-      SubnetId: !Ref PrivateSubnetTwo
+  # NatGatewayOneAttachment:
+  #   Type: AWS::EC2::EIP
+  #   DependsOn: GatewayAttachement
+  #   Properties:
+  #       Domain: vpc
+  # NatGatewayTwoAttachment:
+  #   Type: AWS::EC2::EIP
+  #   DependsOn: GatewayAttachement
+  #   Properties:
+  #       Domain: vpc
+  # NatGatewayOne:
+  #   Type: AWS::EC2::NatGateway
+  #   Properties:
+  #     AllocationId: !GetAtt NatGatewayOneAttachment.AllocationId
+  #     SubnetId: !Ref PublicSubnetOne
+  # NatGatewayTwo:
+  #   Type: AWS::EC2::NatGateway
+  #   Properties:
+  #     AllocationId: !GetAtt NatGatewayTwoAttachment.AllocationId
+  #     SubnetId: !Ref PublicSubnetTwo
+  # PrivateRouteTableOne:
+  #   Type: AWS::EC2::RouteTable
+  #   Properties:
+  #     VpcId: !Ref 'VPC'
+  # PrivateRouteOne:
+  #   Type: AWS::EC2::Route
+  #   Properties:
+  #     RouteTableId: !Ref PrivateRouteTableOne
+  #     DestinationCidrBlock: 0.0.0.0/0
+  #     NatGatewayId: !Ref NatGatewayOne
+  # PrivateRouteTableOneAssociation:
+  #   Type: AWS::EC2::SubnetRouteTableAssociation
+  #   Properties:
+  #     RouteTableId: !Ref PrivateRouteTableOne
+  #     SubnetId: !Ref PrivateSubnetOne
+  # PrivateRouteTableTwo:
+  #   Type: AWS::EC2::RouteTable
+  #   Properties:
+  #     VpcId: !Ref 'VPC'
+  # PrivateRouteTwo:
+  #   Type: AWS::EC2::Route
+  #   Properties:
+  #     RouteTableId: !Ref PrivateRouteTableTwo
+  #     DestinationCidrBlock: 0.0.0.0/0
+  #     NatGatewayId: !Ref NatGatewayTwo
+  # PrivateRouteTableTwoAssociation:
+  #   Type: AWS::EC2::SubnetRouteTableAssociation
+  #   Properties:
+  #     RouteTableId: !Ref PrivateRouteTableTwo
+  #     SubnetId: !Ref PrivateSubnetTwo
 
   # VPC Endpoint for DynamoDB
   # If a container needs to access DynamoDB (coming in module 3) this
@@ -184,8 +184,9 @@ Resources:
             Principal: "*"
             Resource: "*"
       RouteTableIds:
-        - !Ref 'PrivateRouteTableOne'
-        - !Ref 'PrivateRouteTableTwo'
+          - !Ref 'PublicRouteTable'
+        # - !Ref 'PrivateRouteTableOne'
+        # - !Ref 'PrivateRouteTableTwo'
       ServiceName: !Join [ "", [ "com.amazonaws.", { "Ref": "AWS::Region" }, ".dynamodb" ] ]
       VpcId: !Ref 'VPC'
 
@@ -267,7 +268,7 @@ Resources:
             Resource: '*'
 
   # This is a role which is used by the ECS tasks. Tasks in Amazon ECS define
-  # the containers that should be deployed togehter and the resources they
+  # the containers that should be deployed together and the resources they
   # require from a compute/memory perspective. So, the policies below will define
   # the IAM permissions that our Mythical Mysfits docker containers will have.
   # If you attempted to write any code for the Mythical Mysfits service that

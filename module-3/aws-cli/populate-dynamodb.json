@@ -30,6 +30,9 @@
                   "ProfileImageUri" : {
                      "S": "https://www.mythicalmysfits.com/images/chimera_hover.png"
                   },
+                  "Dislikes" : {
+                    "N": "0"
+                  },
                   "Likes" : {
                     "N": "0"
                   },
@@ -68,6 +71,9 @@
                   },
                   "ProfileImageUri" : {
                      "S": "https://www.mythicalmysfits.com/images/cyclops_hover.png"
+                  },
+                  "Dislikes" : {
+                    "N": "0"
                   },
                   "Likes" : {
                     "N": "0"
@@ -108,6 +114,9 @@
                   "ProfileImageUri" : {
                      "S": "https://www.mythicalmysfits.com/images/dragon_hover.png"
                   },
+                  "Dislikes" : {
+                    "N": "0"
+                  },
                   "Likes" : {
                     "N": "0"
                   },
@@ -146,6 +155,9 @@
                   },
                   "ProfileImageUri" : {
                      "S": "https://www.mythicalmysfits.com/images/gorgon_hover.png"
+                  },
+                  "Dislikes" : {
+                    "N": "0"
                   },
                   "Likes" : {
                     "N": "0"
@@ -186,6 +198,9 @@
                   "ProfileImageUri" : {
                      "S": "https://www.mythicalmysfits.com/images/haetae_hover.png"
                   },
+                  "Dislikes" : {
+                    "N": "0"
+                  },
                   "Likes" : {
                     "N": "0"
                   },
@@ -224,6 +239,9 @@
                   },
                   "ProfileImageUri" : {
                      "S": "https://www.mythicalmysfits.com/images/yeti_hover.png"
+                  },
+                  "Dislikes" : {
+                    "N": "0"
                   },
                   "Likes" : {
                     "N": "0"
@@ -264,6 +282,9 @@
                   "ProfileImageUri" : {
                      "S": "https://www.mythicalmysfits.com/images/kraken_hover.png"
                   },
+                  "Dislikes" : {
+                    "N": "0"
+                  },
                   "Likes" : {
                     "N": "0"
                   },
@@ -302,6 +323,9 @@
                   },
                   "ProfileImageUri" : {
                      "S": "https://www.mythicalmysfits.com/images/nessie_hover.png"
+                  },
+                  "Dislikes" : {
+                    "N": "0"
                   },
                   "Likes" : {
                     "N": "0"
@@ -342,6 +366,9 @@
                   "ProfileImageUri" : {
                      "S": "https://www.mythicalmysfits.com/images/mandrake_hover.png"
                   },
+                  "Dislikes" : {
+                    "N": "0"
+                  },
                   "Likes" : {
                     "N": "0"
                   },
@@ -380,6 +407,9 @@
                   },
                   "ProfileImageUri" : {
                      "S": "https://www.mythicalmysfits.com/images/pegasus_hover.png"
+                  },
+                  "Dislikes" : {
+                    "N": "0"
                   },
                   "Likes" : {
                     "N": "0"
@@ -420,6 +450,9 @@
                   "ProfileImageUri" : {
                      "S": "https://www.mythicalmysfits.com/images/phoenix_hover.png"
                   },
+                  "Dislikes" : {
+                    "N": "0"
+                  },
                   "Likes" : {
                     "N": "0"
                   },
@@ -458,6 +491,9 @@
                   },
                   "ProfileImageUri" : {
                      "S": "https://www.mythicalmysfits.com/images/troll_hover.png"
+                  },
+                  "Dislikes" : {
+                    "N": "0"
                   },
                   "Likes" : {
                     "N": "0"

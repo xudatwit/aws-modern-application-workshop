@@ -12,7 +12,7 @@
             "x-amazon-apigateway-authorizer": {
                 "type": "COGNITO_USER_POOLS",
                 "providerARNs": [
-                    "arn:aws:cognito-idp:REPLACE_ME_REGION:REPLACE_ME_ACCOUNT_ID:userpool/REPLACE_ME_COGNITO_USER_POOL_ID"
+                    "arn:aws:cognito-idp:us-east-1:775726440896:userpool/us-east-1_PO3i6nllk"
                 ]
             }
         }
@@ -48,10 +48,10 @@
                             }
                         }
                     },
-                    "connectionId": "REPLACE_ME_VPC_LINK_ID",
+                    "connectionId": "tadx8i",
                     "httpMethod": "GET",
                     "type": "HTTP_PROXY",
-                    "uri": "http://REPLACE_ME_NLB_DNS/"
+                    "uri": "http://mysfits-nlb-c6d9e274619677d9.elb.us-east-1.amazonaws.com/"
                 }
             },
             "options": {
@@ -123,10 +123,10 @@
                 },
                 "x-amazon-apigateway-integration": {
                     "connectionType": "VPC_LINK",
-                    "connectionId": "REPLACE_ME_VPC_LINK_ID",
+                    "connectionId": "tadx8i",
                     "httpMethod": "GET",
                     "type": "HTTP_PROXY",
-                    "uri": "http://REPLACE_ME_NLB_DNS/mysfits",
+                    "uri": "http://mysfits-nlb-c6d9e274619677d9.elb.us-east-1.amazonaws.com/mysfits",
                     "responses": {
                         "default": {
                             "statusCode": "200",
@@ -217,10 +217,10 @@
                         "integration.request.path.mysfitId": "method.request.path.mysfitId"
                     },
                     "connectionType": "VPC_LINK",
-                    "connectionId": "REPLACE_ME_VPC_LINK_ID",
+                    "connectionId": "tadx8i",
                     "httpMethod": "GET",
                     "type": "HTTP_PROXY",
-                    "uri": "http://REPLACE_ME_NLB_DNS/mysfits/{mysfitId}",
+                    "uri": "http://mysfits-nlb-c6d9e274619677d9.elb.us-east-1.amazonaws.com/mysfits/{mysfitId}",
                     "responses": {
                         "default": {
                             "statusCode": "200",
@@ -316,10 +316,238 @@
                         "integration.request.path.mysfitId": "method.request.path.mysfitId"
                     },
                     "connectionType": "VPC_LINK",
-                    "connectionId": "REPLACE_ME_VPC_LINK_ID",
+                    "connectionId": "tadx8i",
                     "httpMethod": "POST",
                     "type": "HTTP_PROXY",
-                    "uri": "http://REPLACE_ME_NLB_DNS/mysfits/{mysfitId}/adopt",
+                    "uri": "http://mysfits-nlb-c6d9e274619677d9.elb.us-east-1.amazonaws.com/mysfits/{mysfitId}/adopt",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    }
+                }
+            },
+            "options": {
+                "summary": "CORS support",
+                "description": "Enable CORS by returning correct headers\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "CORS"
+                ],
+                "x-amazon-apigateway-integration": {
+                    "type": "mock",
+                    "requestTemplates": {
+                        "application/json": "{\n  \"statusCode\" : 200\n}\n"
+                    },
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "{}\n"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Default response for CORS method",
+                        "headers": {
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mysfits/{mysfitId}/dislike": {
+            "post": {
+                "parameters": [{
+                    "name": "mysfitId",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Default response for CORS method",
+                        "headers": {
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "MysfitsUserPoolAuthorizer": [
+
+                    ]
+                }],
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "requestParameters": {
+                        "integration.request.path.mysfitId": "method.request.path.mysfitId"
+                    },
+                    "connectionType": "VPC_LINK",
+                    "connectionId": "tadx8i",
+                    "httpMethod": "POST",
+                    "security": [{
+                        "MysfitsUserPoolAuthorizer": [
+
+                        ]
+                    }],
+                    "type": "HTTP_PROXY",
+                    "uri": "http://mysfits-nlb-c6d9e274619677d9.elb.us-east-1.amazonaws.com/mysfits/{mysfitId}/dislike",
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    }
+                }
+            },
+            "options": {
+                "summary": "CORS support",
+                "description": "Enable CORS by returning correct headers\n",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "CORS"
+                ],
+                "x-amazon-apigateway-integration": {
+                    "type": "mock",
+                    "requestTemplates": {
+                        "application/json": "{\n  \"statusCode\" : 200\n}\n"
+                    },
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            },
+                            "responseTemplates": {
+                                "application/json": "{}\n"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Default response for CORS method",
+                        "headers": {
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/mysfits/{mysfitId}/feed": {
+            "post": {
+                "parameters": [{
+                    "name": "mysfitId",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Default response for CORS method",
+                        "headers": {
+                            "Access-Control-Allow-Headers": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Methods": {
+                                "type": "string"
+                            },
+                            "Access-Control-Allow-Origin": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "security": [{
+                    "MysfitsUserPoolAuthorizer": [
+
+                    ]
+                }],
+                "x-amazon-apigateway-integration": {
+                    "responses": {
+                        "default": {
+                            "statusCode": "200",
+                            "responseParameters": {
+                                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key'",
+                                "method.response.header.Access-Control-Allow-Methods": "'*'",
+                                "method.response.header.Access-Control-Allow-Origin": "'*'"
+                            }
+                        }
+                    },
+                    "requestParameters": {
+                        "integration.request.path.mysfitId": "method.request.path.mysfitId"
+                    },
+                    "connectionType": "VPC_LINK",
+                    "connectionId": "tadx8i",
+                    "httpMethod": "POST",
+                    "security": [{
+                        "MysfitsUserPoolAuthorizer": [
+
+                        ]
+                    }],
+                    "type": "HTTP_PROXY",
+                    "uri": "http://mysfits-nlb-c6d9e274619677d9.elb.us-east-1.amazonaws.com/mysfits/{mysfitId}/feed",
                     "responses": {
                         "default": {
                             "statusCode": "200",
@@ -425,7 +653,7 @@
                         "integration.request.path.mysfitId": "method.request.path.mysfitId"
                     },
                     "connectionType": "VPC_LINK",
-                    "connectionId": "REPLACE_ME_VPC_LINK_ID",
+                    "connectionId": "tadx8i",
                     "httpMethod": "POST",
                     "security": [{
                         "MysfitsUserPoolAuthorizer": [
@@ -433,7 +661,7 @@
                         ]
                     }],
                     "type": "HTTP_PROXY",
-                    "uri": "http://REPLACE_ME_NLB_DNS/mysfits/{mysfitId}/like",
+                    "uri": "http://mysfits-nlb-c6d9e274619677d9.elb.us-east-1.amazonaws.com/mysfits/{mysfitId}/like",
                     "responses": {
                         "default": {
                             "statusCode": "200",
